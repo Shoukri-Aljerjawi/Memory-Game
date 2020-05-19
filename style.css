@@ -1,0 +1,20 @@
+.main {
+  background-color: #ccc;
+  border: #999 1px solid;
+  widows: 250;
+  height: 250px;
+  padding: 24px;
+  margin: 0px auto;
+}
+.main > div{
+    background-color: orange;
+    border: 1px solid blanchedalmond ;
+    width: 71px;
+    height: 71px;
+    float : left;
+    margin: 10px;
+    padding:20px;
+	font-size:64px;
+	cursor:pointer;
+	text-align:center;
+}
