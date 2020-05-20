@@ -1,20 +1,61 @@
-.main {
-  background-color: #ccc;
-  border: #999 1px solid;
-  widows: 250;
-  height: 250px;
-  padding: 24px;
-  margin: 0px auto;
+body {
+  background-color: palevioletred;
 }
-.main > div{
-    background-color: orange;
-    border: 1px solid blanchedalmond ;
-    width: 71px;
-    height: 71px;
-    float : left;
-    margin: 10px;
-    padding:20px;
-	font-size:64px;
-	cursor:pointer;
-	text-align:center;
+.main {
+  width: 50%;
+  height: 600px;
+  padding: 24px;
+  float: left;
+  margin-left: 12%;
+  margin-top: -4%;
+}
+.main > div {
+  background-color: brown;
+  border: #000 1px solid;
+  width: 15%;
+  height: 15%;
+  float: left;
+  margin: 10px;
+  padding: 20px;
+  font-size: 80px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+.time {
+  font-size: 50px;
+  margin-left: 10%;
+  float: left;
+  margin-top: -6%;
+  color: white;
+}
+#timeTxt {
+  font-size: 40px;
+  color: white;
+}
+#btn {
+  font-size: 25px;
+  margin-top: 2%;
+}
+#name {
+  font-size: 23px;
+  margin-top: 1%;
+  margin-left: 0%;
+}
+.player {
+  font-size: 30px;
+  float: right;
+  margin-right: 9%;
+  margin-top: -5%;
+  color: white;
+  border: 3px solid white;
+}
+#refresh {
+  font-size: 25px;
+  float: left;
+}
+#header {
+  text-align: center;
+  font-size: 40px;
+  color: white;
 }

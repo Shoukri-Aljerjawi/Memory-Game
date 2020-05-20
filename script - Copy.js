@@ -1,13 +1,16 @@
-var arr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
-var checkArr = [];
-var cheakArrId = [];
-var Count = 0;
-var start;
-var player = [];
-var name = $("#name").val();
-
-//Start function
-function newGame(arr) {
+arr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
+function Game() {
+  var game = {}
+  game.checkArr = [];
+  game.cheakArrId = [];
+  game.Count = 0;
+  game.start;
+  game.player = [];
+  game.Gamename = $("#name").val();
+  game.start = start;
+  return game;
+}
+var start = function (arr) {
   Count = 0;
   var randomIndex;
   var temp;
@@ -24,15 +27,21 @@ function newGame(arr) {
       '<div id="' + i + '" onclick="clicked(this,\'' + arr[i] + "')\"></div>";
     $(".main").append(output);
   }
-}
+  console.log(output);
+};
 
-//----------------------------------------------
+$("#btn").on("click", function () {
+  game1.timer();
+  document.getElementById("btn").style.visibility = "hidden";
+  document.getElementById("name").style.visibility = "hidden";
+  document.getElementById("refresh").style.visibility = "visible";
+});
 for (var i = 0; i < player.length; i++) {
   $(".player").append(
     "<li>" + player[i].Names + " completed it in " + player[i].Score + "</li>"
   );
 }
-//to check clicked cards
+
 function clicked(card, val) {
   if (card.innerHTML == "" && checkArr.length < 2) {
     card.innerHTML = val;
@@ -54,19 +63,20 @@ function clicked(card, val) {
         //alert("bravoooo!!");
         console.log(Count);
         Count += 2;
+        var min = $("#minutes").text();
+        var sec = $("#seconds").text();
+        var name = $("#name").val();
+        player.unshift({ Names: name, Score: min - sec });
+        $(".player").append(
+          "<li>" +
+            player[0].Names +
+            " completed it in " +
+            player[0].Score +
+            "</li>"
+        );
+
         if (Count === arr.length) {
           alert("You Are Finish");
-          var min = $("#minutes").text();
-          var sec = $("#seconds").text();
-          var name = $("#name").val();
-          player.unshift({ Names: name, Score: min - sec });
-          $(".player").append(
-            "<li>" +
-              player[0].Names +
-              " completed it in " +
-              player[0].Score +
-              "</li>"
-          );
         }
       } else {
         checkTime();
@@ -74,13 +84,13 @@ function clicked(card, val) {
     }
   }
 }
-//if the player choose the wrong chosse
+
 function checkTime() {
   setTimeout(function () {
     var card1 = document.getElementById(cheakArrId[0]);
     var card2 = document.getElementById(cheakArrId[1]);
-    card1.style.background = "brown";
-    card2.style.background = "brown";
+    card1.style.background = "orange";
+    card2.style.background = "orange";
     card1.innerHTML = "";
     card2.innerHTML = "";
     checkArr = [];
@@ -89,7 +99,6 @@ function checkTime() {
   }, 2000);
 }
 
-//timer for player
 function timer() {
   var minutesLabel = document.getElementById("minutes");
   var secondsLabel = document.getElementById("seconds");
@@ -101,19 +110,7 @@ function timer() {
   }, 1000);
 }
 
-//Start Buttom
-$("#btn").on("click", function () {
-  timer();
-  newGame(arr);
-  document.getElementById("btn").style.visibility = "hidden";
-  document.getElementById("name").style.visibility = "hidden";
-  document.getElementById("refresh").style.visibility = "visible";
-  $("#header").append("Weclome " + $("#name").val() + " To Memory-Game ");
-});
-//refresh button
 document.getElementById("refresh").style.visibility = "hidden";
 $("#refresh").on("click", function () {
- // location.reload();
+  location.reload();
 });
-//open all card
-
