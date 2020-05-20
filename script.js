@@ -19,10 +19,12 @@ function newGame(arr) {
   }
 
   var output = "";
+  $(".main").html(" ");
   for (var i = 0; i < arr.length; i++) {
     output =
       '<div id="' + i + '" onclick="clicked(this,\'' + arr[i] + "')\"></div>";
     $(".main").append(output);
+    
   }
 }
 
@@ -55,17 +57,13 @@ function clicked(card, val) {
         console.log(Count);
         Count += 2;
         if (Count === arr.length) {
+          clearInterval(time);
           alert("You Are Finish");
-          var min = $("#minutes").text();
-          var sec = $("#seconds").text();
+          var min = $("#score").text();
           var name = $("#name").val();
-          player.unshift({ Names: name, Score: min - sec });
+          player.unshift({ Names: name, time: min });
           $(".player").append(
-            "<li>" +
-              player[0].Names +
-              " completed it in " +
-              player[0].Score +
-              "</li>"
+            "<li>" + player[0].Names + " Scores " + player[0].time + "</li>"
           );
         }
       } else {
@@ -86,21 +84,22 @@ function checkTime() {
     checkArr = [];
     cheakArrId = [];
     //console.log("");
-  }, 2000);
+  }, 700);
 }
 
 //timer for player
 function timer() {
-  var minutesLabel = document.getElementById("minutes");
+  // var minutesLabel = document.getElementById("minutes");
   var secondsLabel = document.getElementById("seconds");
   var totalSeconds = 0;
-  setInterval(function () {
+  time = setInterval(function () {
     ++totalSeconds;
-    secondsLabel.innerHTML = totalSeconds % 60;
-    minutesLabel.innerHTML = parseInt(totalSeconds / 60);
+    secondsLabel.innerHTML = totalSeconds;
+    //minutesLabel.innerHTML = parseInt(totalSeconds / 60);
   }, 1000);
 }
-
+document.getElementById("seconds").style.visibility = "hidden";
+document.getElementById("timeTxt").style.visibility = "hidden";
 //Start Buttom
 $("#btn").on("click", function () {
   timer();
@@ -108,12 +107,18 @@ $("#btn").on("click", function () {
   document.getElementById("btn").style.visibility = "hidden";
   document.getElementById("name").style.visibility = "hidden";
   document.getElementById("refresh").style.visibility = "visible";
-  $("#header").append("Weclome " + $("#name").val() + " To Memory-Game ");
+  $("#header").append("Welcome " + $("#name").val() + " To Memory-Game ");
+  document.getElementById("seconds").style.visibility = "visible";
+  document.getElementById("timeTxt").style.visibility = "visible";
 });
 //refresh button
 document.getElementById("refresh").style.visibility = "hidden";
 $("#refresh").on("click", function () {
- // location.reload();
+  //location.reload();
+  newGame(arr);
+  clearInterval(time);
+  timer();
 });
 //open all card
+
 
